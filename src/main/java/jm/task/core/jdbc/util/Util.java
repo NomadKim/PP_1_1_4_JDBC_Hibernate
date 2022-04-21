@@ -3,7 +3,6 @@ package jm.task.core.jdbc.util;
 import jm.task.core.jdbc.model.User;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -11,13 +10,16 @@ import java.util.Properties;
 
 public class Util {
     // реализуйте настройку соеденения с БД
+    private final static String hostName = "localhost";
+    private final static String dbName = "USERDAO";
+    private final static String userName = "root";
+    private final static String password = "rootroot";
+
+    private Util(){
+
+    }
+
     public static Connection getConnection() throws SQLException {
-
-        String hostName = "localhost";
-        String dbName = "USERDAO";
-        String userName = "root";
-        String password = "javadb01";
-
         return getConnection(hostName, dbName, userName, password);
     }
 
@@ -28,18 +30,12 @@ public class Util {
         return DriverManager.getConnection(url, userName, password);
     }
 
-    public static SessionFactory getHibernateConnection() throws SQLException {
-
-        String hostName = "localhost";
-        String dbName = "USERDAO";
-        String userName = "root";
-        String password = "javadb01";
-
+    public static SessionFactory getHibernateConnection() {
         return getHibernateConnection(hostName, dbName, userName, password);
     }
 
     public static SessionFactory getHibernateConnection(String hostName, String dbName,
-                                                        String userName, String password) throws SQLException {
+                                                        String userName, String password){
 
         String url = "jdbc:mysql://" + hostName + ":3306/" + dbName;
 

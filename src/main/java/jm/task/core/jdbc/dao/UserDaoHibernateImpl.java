@@ -4,7 +4,6 @@ import jm.task.core.jdbc.model.User;
 import jm.task.core.jdbc.util.Util;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -12,8 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDaoHibernateImpl implements UserDao {
-    public UserDaoHibernateImpl() {
 
+    public UserDaoHibernateImpl() {
     }
 
 
@@ -47,8 +46,6 @@ public class UserDaoHibernateImpl implements UserDao {
             session.beginTransaction();
             session.save(new User(name, lastName, age));
             session.getTransaction().commit();
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
 
@@ -60,8 +57,6 @@ public class UserDaoHibernateImpl implements UserDao {
             User user = session.get(User.class, id);
             session.delete(user);
             session.getTransaction().commit();
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
 
@@ -73,8 +68,6 @@ public class UserDaoHibernateImpl implements UserDao {
             session.beginTransaction();
             listOfUsers = session.createQuery("FROM User").list();
             session.getTransaction().commit();
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
         return listOfUsers;
     }
@@ -86,8 +79,6 @@ public class UserDaoHibernateImpl implements UserDao {
             session.beginTransaction();
             session.createQuery("DELETE FROM User").executeUpdate();
             session.getTransaction().commit();
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
 }
